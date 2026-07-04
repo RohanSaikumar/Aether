@@ -1,0 +1,98 @@
+.sidebar{
+    width: 290px;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background-color: #FFFFFF;
+    border-right: 1px solid #2B3A5B;
+
+    padding: 20px 16px;
+    color: #111827;
+}
+
+.logo {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+
+}
+button  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 7px;
+    background-color: transparent;
+    border: solid rgba(15, 14, 14, 0.5) ;
+    cursor: pointer;
+}
+img {
+      width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.history {
+    margin : 10px;
+    padding: 10px;
+    height: 100%;
+    color:black;
+    background-color: #F8FAFC;
+    max-height: 400px;   /* or height: 400px */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.history li {
+    list-style-type: none;
+    cursor: pointer;
+    padding: 2px 5px;
+    margin-bottom: 0.3rem;
+    font-size: 14px;
+    border: solid 10px transparent;
+    position: relative;
+}
+
+button:hover {
+    background-color : rgba(200, 200, 200, 0.3);
+}
+.history li:hover {
+    background-color : rgba(200, 200, 200, 0.3);
+    border-radius: 10px;
+}
+
+
+.sign{
+    margin: 10px;
+    padding: 10px;
+    font-size: 17px;
+    text-align: center;
+    border-top: solid 0.25px rgba(15, 14, 14, 0.5);
+}
+
+.fa-trash {
+    right: 0;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.history li:hover .fa-trash {
+    opacity: 1;
+    color: white;
+}
+
+.fa-trash:hover {
+    color: red !important;
+}
+
+
+.highlighted {
+    background-color: rgba(78, 76, 76, 0.1);
+    border-radius: 10px;
+}
