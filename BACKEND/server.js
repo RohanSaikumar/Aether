@@ -11,15 +11,22 @@ import session from "express-session";
 import passport from "./config/passport.js";
 
 const app = express();
-const PORT = 8080;
+
+const PORT = process.env.PORT || 8080;
 
 dotenv.config();
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: [
+        "http://localhost:5173",
+        process.env.FRONTEND_URL
+    ],
     credentials: true
 }));
+
 app.use(express.json());
+
+app.set("trust proxy", 1);
 
 app.use(
     session({
@@ -27,7 +34,9 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            maxAge: 1000 * 60 * 60 * 24
+            maxAge: 1000 * 60 * 60 * 24,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax"
         }
     })
 );
@@ -57,5 +66,3 @@ app.use("/api", chatRoutes);
 app.use("/api/auth", authRoutes);
 
 
-const embedding = await getEmbedding("Hello world");
-console.log(embedding.length);

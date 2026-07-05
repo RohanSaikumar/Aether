@@ -20,7 +20,7 @@ function App() {
 
   const getAllThreads = async () => {
       try {
-          const response = await fetch("http://localhost:8080/api/thread",
+          const response = await fetch(`${import.meta.env.VITE_API_URL}/api/thread`,
             {
               credentials : 'include'
             }
@@ -65,7 +65,7 @@ function App() {
             try {
 
                 const response = await fetch(
-                    "http://localhost:8080/api/auth/me",
+                    `${import.meta.env.VITE_API_URL}/api/auth/me`,
                     {
                         credentials: "include"
                     }

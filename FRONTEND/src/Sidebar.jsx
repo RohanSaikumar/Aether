@@ -17,12 +17,12 @@ export default function Sidebar() {
 
     const changeThread = async (newThreadID) => {
         setCurrThreadID(newThreadID);
-
         try {
-            const response = await fetch(`http://localhost:8080/api/thread/${newThreadID}`,
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/thread/${newThreadID}`,
+
                 {
                 credentials: "include"
-            } 
+            }
             );
             const res = await response.json();
 
@@ -36,8 +36,10 @@ export default function Sidebar() {
     };
     
     const deleteThread = async (threadID) => {
+
         try {
-            const response = await fetch(`http://localhost:8080/api/thread/${threadID}`, 
+            const response = awaitfetch(`${import.meta.env.VITE_API_URL}/api/thread/${threadID}`
+, 
             {
                 method: 'DELETE',
                 credentials: "include"
