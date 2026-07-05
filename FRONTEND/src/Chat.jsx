@@ -24,7 +24,7 @@ export default function Chat() {
             if (idx >= content.length) {
                 clearInterval(interval);
             }
-        }, 0.1);
+        }, 5);
 
         return () => clearInterval(interval);
     }, [prevChats, reply]);
