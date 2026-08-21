@@ -1,18 +1,26 @@
-import Embedding from "../models/embeddings.js";
-import { getEmbedding } from "./embeddings.js";
+import Memory from "../models/memories.js";
 
-export async function retrieveMemories(thread, query) {
+export async function retrieveMemories(
+    thread,
+    queryEmbedding,
+    options = {}
+) {
+    const {
+        topK = 5,
+        similarityThreshold = 0.70
+    } = options;
 
-    const queryEmbedding = await getEmbedding(query);
+    const safeTopK = Math.min(topK, 10);
 
-    const results = await Embedding.aggregate([
+    const results = await Memory.aggregate([
         {
             $vectorSearch: {
-                index: "embedding_index",
+                index: "memory_index",
                 path: "embedding",
                 queryVector: queryEmbedding,
-                numCandidates: 100,
-                limit: 5,
+                numCandidates:
+                    Math.max(100, safeTopK * 20),
+                limit: safeTopK,
                 filter: {
                     threadId: thread.threadId
                 }
@@ -21,24 +29,25 @@ export async function retrieveMemories(thread, query) {
         {
             $project: {
                 _id: 0,
-                messageNumber: 1,
-                role: 1,
-                content: 1
+                memory: 1,
+                category: 1,
+                tags: 1,
+                score: {
+                    $meta: "vectorSearchScore"
+                }
             }
         }
     ]);
+
+    const filtered = results.filter(
+        memory =>
+            memory.score >= similarityThreshold
+    );
+
     
-    const memoryContext = [];
 
-    for (const memory of results) {
-
-        const start = Math.max(0, memory.messageNumber - 1);
-        const end = Math.min(thread.messages.length - 1, memory.messageNumber + 1);
-
-        for (let i = start; i <= end; i++) {
-            memoryContext.push(thread.messages[i]);
-        }
-    }
-
-    return memoryContext;
+    return filtered.map(memory => ({
+        role: "system",
+        content: memory.memory
+    }));
 }

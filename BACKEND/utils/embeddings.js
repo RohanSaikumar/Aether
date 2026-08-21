@@ -29,4 +29,4 @@ export async function getEmbedding(text) {
         throw err;
     }
 }
-
+ 

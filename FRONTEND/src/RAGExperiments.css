@@ -1,0 +1,495 @@
+.experimentsPage {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 35px 45px;
+
+    background: var(--bg);
+    color: var(--text);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.experimentsHeader {
+    margin-bottom: 25px;
+}
+
+.experimentsHeader h1 {
+    margin: 7px 0;
+    font-size: 30px;
+    color: var(--text);
+}
+
+.experimentsHeader p {
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+.experimentBackButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 7px 11px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: var(--surface);
+    color: #374151;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.experimentBackButton:hover {
+    background: var(--hover);
+    border-color: var(--border-hover);
+    color: var(--primary-dark);
+}
+
+.createExperimentCard {
+    padding: 22px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    margin-bottom: 25px;
+}
+
+.createExperimentCard h2 {
+    margin: 0 0 16px;
+    font-size: 18px;
+    color: var(--text);
+}
+
+.createExperimentCard > input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 10px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    margin-bottom: 18px;
+
+    outline: none;
+
+    background: var(--surface);
+    color: var(--text);
+}
+
+.createExperimentCard > input:focus,
+.experimentConfigGrid input:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(16, 185, 129, 0.10);
+}
+
+.experimentConfigGrid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+.experimentConfigGrid label {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    font-size: 13px;
+    color: #374151;
+}
+
+.experimentConfigGrid input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 9px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    outline: none;
+
+    background: var(--surface);
+    color: var(--text);
+}
+
+.rewriteToggle {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin: 18px 0;
+
+    font-size: 13px;
+    color: #374151;
+}
+
+.rewriteToggle input {
+    accent-color: var(--primary);
+}
+
+.createExperimentButton,
+.experimentActions button {
+    padding: 9px 14px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: var(--primary);
+    color: white;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+.createExperimentButton:hover,
+.experimentActions button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.createExperimentButton:disabled,
+.experimentActions button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.experimentsSection {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+.experimentsSectionHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 20px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.experimentsSectionHeader h2 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--text);
+}
+
+.experimentsSectionHeader span {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.experimentCard {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 20px;
+
+    border-bottom: 1px solid #F3F4F6;
+
+    transition: background 0.15s ease;
+}
+
+.experimentCard:hover {
+    background: #FCFDFC;
+}
+
+.experimentCard:last-child {
+    border-bottom: none;
+}
+
+.experimentInfo {
+    min-width: 0;
+    flex: 1;
+}
+
+.experimentInfo h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    color: var(--text);
+}
+
+.experimentConfig,
+.experimentResults {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    font-size: 12px;
+}
+
+.experimentConfig span {
+    padding: 5px 8px;
+
+    border-radius: 6px;
+
+    background: #F3F4F6;
+    color: #4B5563;
+}
+
+.experimentResults {
+    margin-top: 13px;
+    color: #374151;
+}
+
+.experimentResults span {
+    padding: 5px 8px;
+
+    border-radius: 6px;
+
+    background: #FAFAFA;
+
+    border: 1px solid #F3F4F6;
+}
+
+.experimentResults strong {
+    color: var(--primary-dark);
+}
+
+.experimentActions {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 7px;
+
+    flex-shrink: 0;
+}
+
+.experimentStatus {
+    padding: 7px 9px;
+
+    border-radius: 6px;
+
+    background: var(--primary-light);
+    color: var(--primary-dark);
+
+    font-size: 12px;
+
+    text-transform: capitalize;
+}
+
+.deleteExperimentButton {
+    background: transparent !important;
+    color: var(--text-secondary) !important;
+}
+
+.deleteExperimentButton:hover {
+    background: #FEF2F2 !important;
+    color: var(--danger) !important;
+}
+
+.noExperiments,
+.experimentsEmpty {
+    padding: 50px;
+
+    text-align: center;
+
+    color: var(--text-secondary);
+}
+
+.experimentError {
+    padding: 11px 14px;
+
+    margin-bottom: 18px;
+
+    border-radius: 8px;
+
+    background: #FEF2F2;
+    color: #B91C1C;
+
+    font-size: 14px;
+}
+
+.experimentsEmpty {
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    background: var(--bg);
+}
+
+.experimentsEmpty h1 {
+    color: var(--text);
+}
+
+.experimentsEmpty button {
+    margin-top: 12px;
+
+    padding: 8px 13px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: var(--primary);
+    color: white;
+
+    cursor: pointer;
+}
+
+.experimentsEmpty button:hover {
+    background: var(--primary-dark);
+}
+
+@media (max-width: 1000px) {
+    .experimentConfigGrid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .experimentCard {
+        flex-direction: column;
+    }
+
+    .experimentActions {
+        align-items: center;
+    }
+}
+
+@media (max-width: 650px) {
+    .experimentsPage {
+        padding: 25px 20px;
+    }
+
+    .experimentConfigGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.currentRagConfigCard {
+    margin-bottom: 30px;
+
+    padding: 24px 30px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.currentRagConfigHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+.currentRagConfigHeader h2 {
+    margin: 0 0 5px;
+
+    font-size: 20px;
+
+    color: var(--text);
+}
+
+.currentRagConfigHeader p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+.currentRagConfigBadge {
+    padding: 5px 10px;
+
+    border-radius: 6px;
+
+    background: var(--primary-light);
+    color: var(--primary-dark);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.06em;
+}
+
+.currentRagConfigGrid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+.currentRagConfigGrid div {
+    padding: 14px;
+
+    background: #FAFAFA;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+}
+
+.currentRagConfigGrid span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+}
+
+.currentRagConfigGrid strong {
+    color: var(--text);
+
+    font-size: 16px;
+}
+
+.currentRagConfigHint {
+    margin: 18px 0 0;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+.currentRagConfigLoading {
+    padding: 20px 0;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+}
+
+@media (max-width: 900px) {
+    .currentRagConfigGrid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .currentRagConfigGrid {
+        grid-template-columns: 1fr;
+    }
+}

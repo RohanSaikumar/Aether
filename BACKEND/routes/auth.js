@@ -7,21 +7,80 @@ const router = express.Router();
 
 
 router.post("/register", async (req, res) => {
-
-    const { username, email, password } = req.body;
-
     try {
+        const username = req.body.username?.trim();
+        const email = req.body.email?.trim().toLowerCase();
+        const password = req.body.password;
 
-        const existingUser = await User.findOne({
-            $or: [
-                { username },
-                { email }
-            ]
+        if (!username || !email || !password) {
+            return res.status(400).json({
+                error: "Username, email and password are required."
+            });
+        }
+
+        if (username.length < 3 || username.length > 20) {
+            return res.status(400).json({
+                error: "Username must be between 3 and 20 characters."
+            });
+        }
+
+        if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+            return res.status(400).json({
+                error:
+                    "Username can only contain letters, numbers and underscores."
+            });
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            return res.status(400).json({
+                error: "Please enter a valid email address."
+            });
+        }
+
+        if (password.length < 8) {
+            return res.status(400).json({
+                error: "Password must be at least 8 characters."
+            });
+        }
+
+        if (!/[A-Z]/.test(password)) {
+            return res.status(400).json({
+                error:
+                    "Password must contain at least one uppercase letter."
+            });
+        }
+
+        if (!/[a-z]/.test(password)) {
+            return res.status(400).json({
+                error:
+                    "Password must contain at least one lowercase letter."
+            });
+        }
+
+        if (!/[0-9]/.test(password)) {
+            return res.status(400).json({
+                error:
+                    "Password must contain at least one number."
+            });
+        }
+
+        const existingUsername = await User.findOne({
+            username
         });
 
-        if (existingUser) {
+        if (existingUsername) {
             return res.status(400).json({
-                error: "User already exists"
+                error: "Username is already taken."
+            });
+        }
+
+        const existingEmail = await User.findOne({
+            email
+        });
+
+        if (existingEmail) {
+            return res.status(400).json({
+                error: "An account with this email already exists."
             });
         }
 
@@ -36,19 +95,15 @@ router.post("/register", async (req, res) => {
         await user.save();
 
         res.status(201).json({
-            message: "User registered successfully"
+            message: "User registered successfully."
         });
-
     } catch (err) {
-
-        console.error(err);
+        console.error("Registration error:", err);
 
         res.status(500).json({
-            error: "Registration failed"
+            error: "Registration failed. Please try again."
         });
-
     }
-
 });
 
 router.post("/login", (req, res, next) => {

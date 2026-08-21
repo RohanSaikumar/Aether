@@ -1,0 +1,381 @@
+.ragTestsPage {
+    height: 100%;
+    box-sizing: border-box;
+    padding: 35px 45px;
+
+    background: var(--bg);
+    color: var(--text);
+
+    overflow-y: auto;
+}
+
+.ragTestsHeader {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.ragTestsHeader h1 {
+    margin: 5px 0 7px;
+    font-size: 30px;
+    color: var(--text);
+}
+
+.ragTestsHeader p {
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+.ragBackButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 7px 11px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: var(--surface);
+    color: #374151;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.ragBackButton:hover {
+    background: var(--hover);
+    border-color: var(--border-hover);
+    color: var(--primary-dark);
+}
+
+.runSuiteButton,
+.createTestCard button,
+.ragTestActions button {
+    border: none;
+    border-radius: 8px;
+
+    padding: 9px 14px;
+
+    background: var(--primary);
+    color: white;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+.runSuiteButton:hover,
+.createTestCard button:hover,
+.ragTestActions button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.runSuiteButton:disabled,
+.createTestCard button:disabled,
+.ragTestActions button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.suiteResult {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.suiteResult div {
+    padding: 16px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    transition: 0.2s ease;
+}
+
+.suiteResult div:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+}
+
+.suiteResult span {
+    display: block;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    margin-bottom: 7px;
+}
+
+.suiteResult strong {
+    font-size: 21px;
+    color: var(--primary-dark);
+}
+
+.createTestCard {
+    padding: 20px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    margin-bottom: 25px;
+}
+
+.createTestCard h2 {
+    margin: 0 0 15px;
+
+    font-size: 18px;
+    color: var(--text);
+}
+
+.createTestCard input,
+.createTestCard textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 10px;
+
+    margin-bottom: 10px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    background: var(--surface);
+    color: var(--text);
+
+    outline: none;
+
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.createTestCard input:focus,
+.createTestCard textarea:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(16, 185, 129, 0.10);
+}
+
+.createTestCard textarea {
+    height: 90px;
+    resize: vertical;
+}
+
+.ragTestsSection {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+.ragTestsSectionHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 20px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.ragTestsSectionHeader h2 {
+    margin: 0;
+
+    font-size: 18px;
+    color: var(--text);
+}
+
+.ragTestsSectionHeader span {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.ragTestCard {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 20px;
+    padding: 18px 20px;
+
+    border-bottom: 1px solid #F3F4F6;
+
+    transition: background 0.15s ease;
+}
+
+.ragTestCard:hover {
+    background: #FCFDFC;
+}
+
+.ragTestCard:last-child {
+    border-bottom: none;
+}
+
+.ragTestContent {
+    min-width: 0;
+    flex: 1;
+}
+
+.ragTestContent h3 {
+    margin: 0 0 8px;
+
+    font-size: 15px;
+    color: var(--text);
+}
+
+.ragTestContent p {
+    margin: 5px 0;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+.ragTestScores {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 12px;
+
+    font-size: 12px;
+    color: #374151;
+}
+
+.ragTestScores .passed {
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+
+.ragTestScores .failed {
+    color: #EF4444;
+    font-weight: 600;
+}
+
+.ragTestActions {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 7px;
+}
+
+.ragTestActions .deleteTestButton {
+    background: transparent;
+    color: var(--text-secondary);
+}
+
+.ragTestActions .deleteTestButton:hover {
+    background: #FEF2F2;
+    color: #EF4444;
+}
+
+.noRagTests,
+.ragTestsEmpty {
+    padding: 50px;
+
+    text-align: center;
+
+    color: var(--text-secondary);
+}
+
+.ragTestsEmpty {
+    height: 100%;
+    box-sizing: border-box;
+
+    background: var(--bg);
+}
+
+.ragTestsEmpty h1 {
+    color: var(--text);
+}
+
+.ragTestsEmpty button {
+    margin-top: 12px;
+
+    padding: 8px 13px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: var(--primary);
+    color: white;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.ragTestsEmpty button:hover {
+    background: var(--primary-dark);
+}
+
+.ragTestError {
+    padding: 11px 14px;
+
+    margin-bottom: 18px;
+
+    border-radius: 8px;
+
+    background: #FEF2F2;
+    color: #B91C1C;
+
+    font-size: 14px;
+}
+
+.ragTestAnswer {
+    margin-top: 8px;
+
+    color: #4B5563;
+
+    line-height: 1.6;
+}
+
+.ragTestAnswer p {
+    margin: 6px 0;
+}
+
+.ragTestAnswer h1,
+.ragTestAnswer h2,
+.ragTestAnswer h3 {
+    margin: 12px 0 6px;
+
+    color: var(--text);
+}
+
+.ragTestAnswer ul,
+.ragTestAnswer ol {
+    margin: 6px 0;
+    padding-left: 22px;
+}
+
+.ragTestAnswer li {
+    margin: 3px 0;
+}
+
+.ragTestAnswer strong {
+    color: var(--text);
+}
+
+.ragTestLatestAnswer > strong {
+    display: block;
+    margin-bottom: 4px;
+}
