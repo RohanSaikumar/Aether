@@ -83,6 +83,7 @@ Evaluation Results
 Compare Configurations
      ↓
 Improve RAG
+```
 ---
 
 ### 🗂️ Workspaces & Knowledge Management
