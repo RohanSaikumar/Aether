@@ -54,18 +54,35 @@ This creates an iterative environment for investigating how changes to the RAG p
 
 ### 📊 RAG Evaluation
 
-Aether includes dedicated **RAG Tests, Evaluation, and Experimentation** interfaces.
+Aether includes a dedicated evaluation framework for **systematically measuring RAG response quality**, rather than relying only on manual inspection.
+
+The evaluation pipeline uses an **LLM-as-a-Judge approach** to assess generated responses against the retrieved context and evaluation criteria.
 
 Evaluation can be used to:
 
 - Run controlled RAG test cases
-- Analyze RAG behavior
-- Evaluate different configurations
-- Compare experiment results
-- Identify areas for improvement
+- Evaluate generated responses using an **LLM judge**
+- Assess response quality against the available context
+- Analyze RAG behavior across different configurations
+- Compare results between RAG experiments
+- Identify weaknesses and areas for improvement
 
-Testing and experimentation are treated as part of the **AI development lifecycle** rather than as an afterthought.
+This creates an evaluation loop:
 
+```text
+RAG Test Case
+     ↓
+RAG Pipeline
+     ↓
+Generated Response
+     ↓
+LLM-as-a-Judge
+     ↓
+Evaluation Results
+     ↓
+Compare Configurations
+     ↓
+Improve RAG
 ---
 
 ### 🗂️ Workspaces & Knowledge Management
