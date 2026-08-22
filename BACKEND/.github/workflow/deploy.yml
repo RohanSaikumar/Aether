@@ -1,0 +1,46 @@
+name: Deploy Aether Backend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build Docker image
+        run: |
+          docker build -t rohansaikumar/aether-backend:latest .
+
+      - name: Push Docker image
+        run: |
+          docker push rohansaikumar/aether-backend:latest
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker pull rohansaikumar/aether-backend:latest
+            docker stop aether-backend || true
+            docker rm aether-backend || true
+
+            docker run -d \
+              --name aether-backend \
+              -p 443:443 \
+              --env-file .env \
+              -v /etc/letsencrypt:/etc/letsencrypt:ro \
+              rohansaikumar/aether-backend:latest
