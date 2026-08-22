@@ -21,7 +21,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t rohansaikumar/aether-backend:latest .
+          docker build -t rohansaikumar/aether-backend:latest ./BACKEND
 
       - name: Push Docker image
         run: |
